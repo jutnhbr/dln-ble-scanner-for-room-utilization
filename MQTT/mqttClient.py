@@ -3,6 +3,7 @@ from config import config
 from util import wifiManager
 import time
 import ujson
+import gc
 
 clientName = config.CLIENT_NAME
 brokerAddr = config.BROKER_ADDRESS
@@ -13,30 +14,45 @@ testTopic = clientName.encode() + b"/test"
 # Topic for the BLE Scan Results
 scanTopic = clientName.encode() + b"/scanner"
 
+encode = True
+buffer = None
+
 
 def MQTTConnect():
-    print("MQTT > Client: ", clientName)
-    print("MQTT > Broker Address:", brokerAddr)
-    mqttc.connect()
+    try:
+        print("MQTT > Client: ", clientName)
+        print("MQTT > Broker Address:", brokerAddr)
+        mqttc.connect()
+        gc.collect()
+    except OSError as e:
+        MQTTConnect()
 
 def sendData(data):
+    global encode
+    global buffer
     
-    last_data = data
-    
-    if(wifiManager.isConnected()):
+    if encode:
+        buffer = ujson.dumps(data)
+        
+    if(wifiManager.isConnected()): 
         print(clientName, "MQTT > Sending Data...")
-        json_data = ujson.dumps(data)
         try:
-            mqttc.publish(scanTopic, json_data.encode())
+            mqttc.publish(scanTopic, buffer.encode())
+            encode = True
+            gc.collect()
         except OSError as e:
             print("Publishing failed. Retrying...")
             time.sleep(3)
             MQTTConnect()
-            sendData(last_data)
+            encode = False
+            sendData(buffer)
+    
     else:
         print("MQTT > Lost Network Connection ...")
         wifiManager.connect()
-        sendData(last_data)
+        encode = False
+        sendData(buffer)
+
     
 # Sending Test Messages over the Test Topic   
 def sendTestMsg():
