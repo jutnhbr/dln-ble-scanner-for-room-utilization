@@ -47,7 +47,9 @@ async def ble_scan(active, duration, filter_addr_type, filter_rssi, filter_dupli
                 "timestamp": timeFormat.getTimestamp(),
                 "scanresult" : ujson.dumps([ob.__dict__ for ob in ble_devices])
             }
-        return (ble_devices, scan_result)
+        ble_devices = None
+        gc.collect()
+        return (scan_result)
     return None
 
 # Filtering Duplicated Entries
