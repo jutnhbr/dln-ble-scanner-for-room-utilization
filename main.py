@@ -5,11 +5,12 @@ from config import config
 import uasyncio as asyncio
 import ujson
 import time
+import gc
 
 
 async def initScanner():
     while True:
-        devices_raw, scan_result = asyncio.run(bleScanner.ble_scan(
+        scan_result = asyncio.run(bleScanner.ble_scan(
             config.ACTIVE_SCAN,
             config.SCAN_DURATION,
             config.FILTER_ADDR_TYPE,
@@ -21,6 +22,7 @@ async def initScanner():
             ))
         if(config.MQTT):
             mqttClient.sendData(scan_result)
+        gc.collect()
         time.sleep(config.TIME_BETWEEN_SCANS)
             
     
