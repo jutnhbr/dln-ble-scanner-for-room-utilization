@@ -1,5 +1,5 @@
 # DLN Bluetooth Low Energy Scanner
-ESP32 MicroPython Project to scan for nearby Bluetooth Low Energy Devices to determine the room utilization.
+ESP32 MicroPython Project to scan for nearby Bluetooth Low Energy Devices to determine the room utilization. Check out my ReactJS [Webinterface](https://github.com/jutnhbr/dln-ble-scanner-webinterface) for the Scanner Application
 
 # Dependencies
 - Aioble - High Level Bluetooth Low Energy MicroPython Library
