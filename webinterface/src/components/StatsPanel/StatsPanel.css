@@ -1,0 +1,21 @@
+.stats-panel {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    height: 40px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 20px;
+}
+.stats-panel > p {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    font-family: "Roboto", sans-serif;
+    margin: 10px;
+    font-size: 16px;
+}
+

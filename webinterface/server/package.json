@@ -1,0 +1,24 @@
+{
+  "name": "server",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js --ignore client"
+  },
+  "dependencies": {
+    "@influxdata/influxdb-client": "^1.33.0",
+    "@influxdata/influxdb-client-apis": "^1.33.0",
+    "cookie-parser": "~1.4.4",
+    "cors": "^2.8.5",
+    "debug": "~2.6.9",
+    "dotenv": "^16.0.3",
+    "express": "~4.16.1",
+    "http-errors": "~1.6.3",
+    "jade": "~1.11.0",
+    "morgan": "~1.9.1",
+    "mqtt": "^4.3.7",
+    "nodemon": "^2.0.20"
+  },
+  "type": "module"
+}

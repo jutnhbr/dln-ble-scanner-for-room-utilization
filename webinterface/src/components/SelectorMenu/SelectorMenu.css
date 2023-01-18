@@ -1,0 +1,51 @@
+.menu-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    width:  98%;
+    height: 50px;
+    background-color: #f5f5f5;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    margin: 20px;
+}
+
+.menu-container > select {
+    margin: 10px;
+    width: 200px;
+    height: 35px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    padding: 5px;
+}
+
+.menu-container > button {
+    margin: 10px;
+    width: 200px;
+    height: 35px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    padding: 5px;
+}
+
+.menu-container > button:hover {
+    background-color: #ccc;
+}
+
+.menu-container > button:active {
+    background-color: #aaa;
+}
+
+.menu-container > button:focus {
+    outline: none;
+}
+
+.menu-container > p {
+    font-family: "Roboto", sans-serif;
+    margin: 10px;
+    font-size: 16px;
+}
+
